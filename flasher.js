@@ -1,10 +1,12 @@
-import "./lib/beer.min.js";
-import { createApp, reactive, ref, nextTick, watch, computed } from "./lib/vue.min.js";
-import { Dfu } from "./lib/dfu.js";
-import { ESPLoader, Transport, HardReset } from "./lib/esp32.js";
-import { SerialConsole } from './lib/console.js';
+import "/lib/beer.min.js";
+import { createApp, reactive, ref, nextTick, watch, computed } from "/lib/vue.min.js";
+import { Dfu } from "/lib/dfu.js";
+import { ESPLoader, Transport, HardReset } from "/lib/esp32.js";
+import { SerialConsole } from '/lib/console.js';
 
-const configRes = await fetch('./config.json');
+const searchParams = new URLSearchParams(location.search);
+const configName = searchParams.get('config')?.replaceAll(/[^a-z_-]/g, '') ?? 'config';
+const configRes = await fetch(`/${configName}.json`);
 const config = await configRes.json();
 
 const githubRes = await fetch('/releases');
@@ -43,6 +45,12 @@ const commandReference  = {
 
 async function delay(milis) {
   return await new Promise((resolve) => setTimeout(resolve, milis));
+}
+
+function toSlug(text) {
+  return String(text).toLowerCase()
+    .replace(/[^a-z0-9.]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 function getGithubReleases(roleType, files) {
@@ -129,6 +137,7 @@ function setup() {
     firmware: null,
     version: null,
     wipe: false,
+    espFlashAddress: 0x10000,
     nrfEraserFlashingPercent: 0,
     nrfEraserFlashing: false,
     port: null,
@@ -144,6 +153,26 @@ function setup() {
     const fwVersion = selected.firmware.version[selected.version];
 
     return fwVersion ? fwVersion[key] || '' : '';
+  }
+
+  const getNotice = (selected) => {
+    let notice = config.notice[selected.firmware.notice] || selected.firmware.notice || '';
+
+    if(notice) {
+      notice = notice.replaceAll(/\$\{(\w+)\}/g, (_, varName) => selected.device[varName] || '');
+    }
+
+    return notice;
+  }
+
+  const formatChangeLog = (changelog) => {
+    return changelog
+      .replace(/change log:\r?\n/i, '')
+      .replace(/^[-*] /mg, '')
+      .replace(/#(\d+)$/gm, `<a target="_blank" href="https://github.com/meshcore-dev/MeshCore/pull/$1">#$1</a>`)
+//      .split(/\r?\n/)
+//      .map(l => `* ${l}`)
+//      .join('\n')
   }
 
   const flashing = reactive({
@@ -198,6 +227,87 @@ function setup() {
     return firmware.version[firstVersion].files.length > 0;
   }
 
+  // --- URL Routing ---
+  // NOTE: the server must serve index.html for all paths (catch-all / try_files).
+
+  const deviceToSlug = (device) => toSlug([device.class, device.name].join('-'));
+
+  const firmwareToSlug = (firmware) => {
+    const title = getRoleFwValue(firmware, 'title');
+    const subTitle = getRoleFwValue(firmware, 'subTitle');
+    return toSlug(subTitle ? `${title}-${subTitle}` : title);
+  };
+
+  let initializingFromUrl = false;
+
+  const buildUrl = () => {
+    if (serialCon.opened) return '/console';
+    if (!selected.device) return '/';
+    let path = '/' + deviceToSlug(selected.device) + '/';
+    if (!selected.firmware) return path;
+    path += firmwareToSlug(selected.firmware) + '/';
+    if (selected.version) path += toSlug(selected.version);
+    return path;
+  };
+
+  const updateUrl = (replace = false) => {
+    if (initializingFromUrl) return;
+    const path = buildUrl();
+    if (window.location.pathname !== path) {
+      replace ? history.replaceState(null, '', path) : history.pushState(null, '', path);
+    }
+  };
+
+  const applyUrlPath = (path) => {
+    initializingFromUrl = true;
+    const segments = path.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+
+    if (segments.length === 0 || segments[0] === 'console') {
+      nextTick(() => { initializingFromUrl = false; });
+      return;
+    }
+
+    const [deviceSlug, roleSlug, versionSlug] = segments;
+    const matchingDevices = config.device.filter(d => deviceToSlug(d) === deviceSlug);
+    if (matchingDevices.length === 0) {
+      nextTick(() => { initializingFromUrl = false; });
+      return;
+    }
+
+    // When multiple devices share the same slug, use the firmware slug to pick the right one
+    let device, firmware;
+    if (roleSlug && matchingDevices.length > 1) {
+      for (const d of matchingDevices) {
+        const f = d.firmware.find(f => firmwareToSlug(f) === roleSlug && firmwareHasData(f));
+        if (f) { device = d; firmware = f; break; }
+      }
+    }
+    if (!device) device = matchingDevices[0];
+    selected.device = device;
+
+    if (!roleSlug) {
+      nextTick(() => { initializingFromUrl = false; });
+      return;
+    }
+
+    if (!firmware) firmware = device.firmware.find(f => firmwareToSlug(f) === roleSlug && firmwareHasData(f));
+    if (!firmware) {
+      nextTick(() => { initializingFromUrl = false; });
+      return;
+    }
+    selected.firmware = firmware;
+
+    // Use nextTick so the firmware watcher sets the default version first,
+    // then we override it with the version from the URL.
+    nextTick(() => {
+      if (versionSlug) {
+        const versionName = Object.keys(firmware.version).find(v => toSlug(v) === versionSlug);
+        if (versionName) selected.version = versionName;
+      }
+      initializingFromUrl = false;
+    });
+  };
+
   const stepBack = () => {
     if(selected.device && selected.firmware) {
       if(selected.firmware.version[selected.version].customFile) {
@@ -214,11 +324,6 @@ function setup() {
       selected.device = null;
     }
   }
-
-  watch(() => selected.firmware, (firmware) => {
-    if(firmware == null) return;
-    selected.version = Object.keys(firmware.version)[0];
-  });
 
   const flasherCleanup = async () => {
     flashing.active = false;
@@ -302,6 +407,7 @@ function setup() {
       );
 
       selected.wipe = true;
+      selected.espFlashAddress = 0;
     }
 
     selected.firmware = {
@@ -378,8 +484,6 @@ function setup() {
       return;
     }
 
-    console.log({flashFiles});
-
     let flashData;
     if(flashFiles[0].file) {
       flashData = flashFiles[0].file;
@@ -387,6 +491,7 @@ function setup() {
       let flashFile;
       if(device.type === 'esp32') {
         flashFile = flashFiles.find(f => f.type === (selected.wipe ? 'flash-wipe' : 'flash-update'));
+        if(selected.wipe) selected.espFlashAddress = 0x00000;
       }
       else {
         flashFile = flashFiles[0];
@@ -422,7 +527,7 @@ function setup() {
         enableTracing: false,
         fileArray: [{
           data: await blobToBinaryString(flashData),
-          address: selected.wipe ? 0x00000 : 0x10000
+   	  address: selected.espFlashAddress
         }],
         reportProgress: async (_, written, total) => {
           flashing.percent = (written / total) * 100;
@@ -481,12 +586,13 @@ function setup() {
   };
 
   const devices = computed(() => {
-    const classSortPrefix = (d) => d.class === 'ripple' ? '1' : '2';
+    const classes = ['ripple', 'meshos', 'community'];
     const deviceGroups = {};
 
-    for(const cls of ['ripple', 'community']) {
+    let index = 0;
+    for(const cls of classes) {
       const devices = config.device.toSorted(
-        (a, b) => (classSortPrefix(a) + a.maker + a.name).localeCompare(classSortPrefix(b) + b.maker + b.name)
+	(a, b) => (index + a.maker + a.name).localeCompare(index + b.maker + b.name)
       ).filter(
         d => d.class === cls && (deviceFilterText.value == '' || d.name.toLowerCase().includes(deviceFilterText.value?.toLowerCase()))
       )
@@ -516,6 +622,29 @@ function setup() {
     consoleEditBox.value.focus();
   }
 
+  watch(() => selected.firmware, (firmware) => {
+    if(firmware == null) return;
+    selected.version = Object.keys(firmware.version)[0];
+  });
+
+  watch(() => selected.device, updateUrl);
+  watch(() => selected.firmware, updateUrl);
+  watch(() => selected.version, () => updateUrl(true));  // replace: version is a refinement, not a new nav step
+  watch(() => serialCon.opened, updateUrl);
+
+  window.addEventListener('popstate', () => {
+    if (serialCon.opened) closeSerialCon();
+    flashing.active = false;
+    flashing.log = '';
+    flashing.error = '';
+    selected.firmware = null;
+    selected.version = null;
+    selected.device = null;
+    applyUrlPath(window.location.pathname);
+  });
+
+  applyUrlPath(window.location.pathname);
+
   return {
     snackbar,
     consoleEditBox, consoleWindow, consoleMouseUp,
@@ -525,7 +654,8 @@ function setup() {
     sendCommand, openSerialGUI,
     retry, close, commandReference,
     stepBack,
-    customFirmwareLoad, getFirmwarePath, getSelFwValue, getRoleFwValue,
+    customFirmwareLoad, getFirmwarePath,
+    getSelFwValue, getRoleFwValue, getNotice, formatChangeLog,
     firmwareHasData,
     canFlash, nrfErase
   }

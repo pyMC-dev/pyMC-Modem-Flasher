@@ -102,6 +102,10 @@ body:has([v-cloak]):after {
   white-space-collapse: preserve;
   min-width: 300px;
 }
+#app a {
+  text-decoration: underline;
+}
+
 #app .version {
   flex-wrap: wrap;
 }

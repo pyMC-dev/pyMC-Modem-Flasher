@@ -1,6 +1,10 @@
 {
 	"staticPath": "/firmware",
 	"role": {
+		"meshos": {
+			"icon": "dashboard",
+			"title": "MeshOS"
+		},
 		"gui": {
 			"icon": "gradient",
 			"title": "Ripple GUI",
@@ -34,6 +38,10 @@
 			"tooltip": "Special role for local room server. Configured via Config/Console on flasher main page"
 		}
 	},
+	"notice": {
+		"otafixRecommended": "<article class='tertiary-container'>We strongly recommend installing <a target='_blank' href='/firmware/${bootloader}'>OTAFIX bootloader</a> for more reliable Bluetooth OTA DFU. <a target='_blank' href='https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md#73-q-is-there-a-way-to-lower-the-chance-of-a-failed-ota-device-firmware-update-dfu'>Read more</a></article>",
+		"otafixNeeded": "<article class='tertiary-container'>WARNING: We strongly recommend installing <a target='_blank' href='/firmware/${bootloader}'>OTAFIX bootloader</a> if you plan to update firmware via OTA bluetooth, as factory bootloader does not support it! <a target='_blank' href='https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md#73-q-is-there-a-way-to-lower-the-chance-of-a-failed-ota-device-firmware-update-dfu'>Read more</a></article>"
+	},
 	"maker": {
 		"elecrow": {
 			"name": "Elecrow"
@@ -59,6 +67,51 @@
 	},
 	"device": [
 		{
+			"maker": "heltec",
+			"class": "ripple",
+			"name": "Heltec v4 + Expansion Kit (Touch)",
+			"tooltip": "<img class='device' src='/img/heltec_v4_exp.svg'>",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "gui",
+					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-HeltecV4-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-HeltecV4-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* faster map rendering\n* Bandwidth 500 support\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/491480'>Full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-HeltecV4-ExpKit-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-HeltecV4-ExpKit-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/491480'>Full changelog</a></b>"
+						}
+					}
+				}
+			]
+		},
+		{
 			"maker": "lilygo",
 			"class": "ripple",
 			"name": "LilyGo T-Deck",
@@ -69,6 +122,36 @@
 				{
 					"role": "gui",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeck-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeck-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* faster map rendering\n* Bandwidth 500 support\n* trackball crash fix\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/361676'>Full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeck-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeck-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/361676'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -372,6 +455,36 @@
 				{
 					"role": "guiSD",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeck-SD-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeck-SD-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* faster map rendering\n* Bandwidth 500 support\n* trackball crash fix\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/361676'>Full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeck-SD-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeck-SD-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/361676'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -685,6 +798,36 @@
 				{
 					"role": "gui",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeckPro-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeckPro-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\nv9.0 changes:\n*support for v1.0 and v1.1 hardware models (separate .bin files in zip)\n* Discover list now overwrites oldest entry if full\n* new UI: customisable home icon grid, and new icon grid menus\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/450194'>Full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeckPro-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeckPro-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/450194'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -795,6 +938,21 @@
 				{
 					"role": "guiSD",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeckPro-SD-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeckPro-SD-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\nv9.0 changes:\n*support for v1.0 and v1.1 hardware models (separate .bin files in zip)\n* Discover list now overwrites oldest entry if full\n* new UI: customisable home icon grid, and new icon grid menus\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/450194'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -901,13 +1059,55 @@
 							"notes": "* Initial release"
 						}
 					}
+				},
+				{
+					"role": "gui",
+					"title": "Ripple GUI (T-Deck Pro v1.1)",
+					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeckProV11-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeckProV11-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\nv9.0 changes:\n*support for v1.0 and v1.1 hardware models (separate .bin files in zip)\n* Discover list now overwrites oldest entry if full\n* new UI: customisable home icon grid, and new icon grid menus\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/450194'>Full changelog</a></b>"
+						}
+					}
+				},
+				{
+					"role": "guiSD",
+					"title": "Ripple GUI: data on SD card (T-Deck Pro v1.1)",
+					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TDeckProV11-SD-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TDeckProV11-SD-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\nv9.0 changes:\n*support for v1.0 and v1.1 hardware models (separate .bin files in zip)\n* Discover list now overwrites oldest entry if full\n* new UI: customisable home icon grid, and new icon grid menus\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/450194'>Full changelog</a></b>"
+						}
+					}
 				}
 			]
 		},
 		{
 			"maker": "lilygo",
 			"class": "ripple",
-			"name": "LilyGo T5 E-Paper S3 Pro (non-gps, only rev. H752)",
+			"name": "LilyGo T5 E-Paper S3 Pro (H752-XX)",
 			"tooltip": "<img class='device' src='/img/lilygo_t5_pro.svg'>",
 			"icon": "/img/lora.svg",
 			"type": "esp32",
@@ -915,139 +1115,35 @@
 				{
 					"role": "gui",
 					"version": {
-						"v7.1": {
+						"v9.2": {
 							"files": [
 								{
 									"type": "flash-wipe",
-									"name": "Ultra-T5-epaper-UKStore-v7.1-merged.bin",
+									"name": "Ultra-T5Pro-v9.2-merged.bin",
 									"title": "Combined app+partition+bootloader firmware bin"
 								},
 								{
 									"type": "flash-update",
-									"name": "Ultra-T5-epaper-UKStore-v7.1.bin",
+									"name": "Ultra-T5Pro-v9.2.bin",
 									"title": "App firmware bin (use with m5 booloader)"
 								}
 							],
-							"notes": "* Channel details hex or base64 input\n* MeshCore lib updates/fixes"
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\n<b><a target='blank' href='https://buymeacoffee.com/ripplebiz/e/478441'>full changelog</a></b>"
 						},
-						"v7.0": {
+						"v8.2": {
 							"files": [
 								{
 									"type": "flash-wipe",
-									"name": "Ultra-T5-epaper-UKStore-v7.0-merged.bin",
+									"name": "Ultra-T5Pro-v8.2-merged.bin",
 									"title": "Combined app+partition+bootloader firmware bin"
 								},
 								{
 									"type": "flash-update",
-									"name": "Ultra-T5-epaper-UKStore-v7.0.bin",
+									"name": "Ultra-T5Pro-v8.2.bin",
 									"title": "App firmware bin (use with m5 booloader)"
 								}
 							],
-							"notes": "* Saved paths, manual set path,\n* Trackball press is now select, long press for screen off,\n* Room keep-alive packets now not sent,\n* Discover screen, max now 140,\n* New customisable sounds: new-advert.mp3, existing-advert.mp3"
-						},
-						"v6.9": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "Ultra-T5-epaper-UKStore-v6.9-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "Ultra-T5-epaper-UKStore-v6.9.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* Sound and other prefs now persisted\n* New “Show on Map” conversation menu\n* MeshCore lib fixes"
-						},
-						"v6.8": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "Ultra-T5-epaper-UKStore-v6.8-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "Ultra-T5-epaper-UKStore-v6.8.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* Repeater & Room UI redesign\n* Room, admin CLI now from menu"
-						},
-						"v6.7": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "RippleUltra-T5-epaper-v6.7-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "RippleUltra-T5-epaper-v6.7.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* Public channel auto-configured (new profiles)\n* Telemetry support (location, ‘online’ indicator)\n* Rooms, unsynced counter (green)\n* Room stats dialog\n* Discover, ‘Send ID Broadcast’ menu"
-						},
-						"v6.6": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "RippleUltra-T5-epaper-v6.6-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "RippleUltra-T5-epaper-v6.6.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* now saves repeater and room server passwords.\n* New 'auto advert ON/OFF' option"
-						},
-						"v6.5": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "RippleUltra-T5-epaper-v6.5-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "RippleUltra-T5-epaper-v6.5.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* Existing profiles have SF editable"
-						},
-						"v6.3": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "RippleUltra-T5-epaper-v6.3-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "RippleUltra-T5-epaper-v6.3.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							],
-							"notes": "* BUG Fix: advert verify caused memory corruption"
-						},
-						"v6.0-beta22": {
-							"files": [
-								{
-									"type": "flash-wipe",
-									"name": "RippleUltra-T5-epaper-v6.0-beta21-merged.bin",
-									"title": "Combined app+partition+bootloader firmware bin"
-								},
-								{
-									"type": "flash-update",
-									"name": "RippleUltra-T5-epaper-v6.0-beta21.bin",
-									"title": "App firmware bin (use with m5 booloader)"
-								}
-							]
+							"notes": "v8.2 changes:\n* updated UI colour scheme\n* new Regions screen, with 'Scan Local' menu\n* new 'Owner Info' menu, from Discover > Scan Local\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/478441'>Full changelog</a></b>"
 						}
 					}
 				}
@@ -1065,6 +1161,36 @@
 					"role": "gui",
 					"title": "[SX1262] Ripple GUI",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-SX1262-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-SX1262-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\n<b><a target='blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-sx1262-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-sx1262-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -1251,6 +1377,36 @@
 					"role": "guiSD",
 					"title": "[SX1262] Ripple GUI: data on SD card",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-SX1262-SD-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-SX1262-SD-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\n<b><a target='blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-SD-sx1262-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-SD-sx1262-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -1422,6 +1578,36 @@
 					"role": "gui",
 					"title": "[LR1121] Ripple GUI",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-LR1121-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-LR1121-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\n<b><a target='blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-LR1121-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-LR1121-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -1443,6 +1629,36 @@
 					"role": "guiSD",
 					"title": "[LR1121] Ripple GUI: data on SD card",
 					"version": {
+						"v9.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-LR1121-SD-v9.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-LR1121-SD-v9.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "v9.2 changes:\n* multibyte path hash support\n\nv9.1 changes:\n* Off-grid (client repeat) mode\n* Bandwidth 500 support\n\n<b><a target='blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>full changelog</a></b>"
+						},
+						"v8.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TPager-SD-LR1121-v8.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TPager-SD-LR1121-v8.2.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/415984'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -1508,6 +1724,36 @@
 			]
 		},
 		{
+			"maker": "lilygo",
+			"class": "ripple",
+			"name": "LilyGo T-Watch S3 Plus",
+			"tooltip": "<img class='device' src='/img/lilygo_twatch_plus.svg'>",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "gui",
+					"version": {
+						"v9.3": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "Ultra-TWatchS3Plus-v9.3.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-TWatchS3Plus-v9.3.bin",
+									"title": "App firmware bin (use with m5 booloader)"
+								}
+							],
+							"notes": "* Power saving added (battery life from ~12 hr to ~20 hr)\n* Stopwatch and countdown Timer home screen widgets\n* Help tutorial screens"
+						}
+					}
+				}
+			]
+		},
+		{
 			"maker": "seeed",
 			"class": "ripple",
 			"name": "Seeed Studio Wio Tracker L1 Pro",
@@ -1515,10 +1761,26 @@
 			"tooltip": "<img class='device' src='/img/wio_tracker_l1.svg'>",
 			"type": "nrf52",
 			"erase": "WioTrackerL1_QSPIFlash_Format-v1.2.zip",
+			"bootloader": "wio_tracker_l1_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "gui",
 					"version": {
+						"v8.2": {
+							"files": [
+								{
+									"type": "download",
+									"name": "Ultra-WioTrackerL1-v8.2.uf2",
+									"title": "UF2 file for manual USB DFU mass storage update"
+								},
+								{
+									"type": "flash-update",
+									"name": "Ultra-WioTrackerL1-v8.2.zip",
+									"title": "App firmware"
+								}
+							],
+							"notes": "* Updated UI colour scheme\n* New Regions screen, with 'Scan Local' menu\n* New 'Owner Info' menu, from Discover > Scan Local\n\n<b><a target='_blank' href='https://buymeacoffee.com/ripplebiz/e/469784'>Full changelog</a></b>"
+						},
 						"v7.14": {
 							"files": [
 								{
@@ -1563,6 +1825,353 @@
 								}
 							],
 							"notes": "* Fixed PIN unlock screen\n* Added kid mode support\n* Repeater and Room CLI: new \"get\" command for full telemetry fetch"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "lilygo",
+			"class": "meshos",
+			"name": "LilyGo T-Deck",
+			"tooltip": "<img class='device' src='/img/lilygo_tdeck.svg'>",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "meshos",
+					"version": {
+						"v1.1.8": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.8-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.8.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.8.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Better compatibility with MeshCore app\n* Channels increased to 20 when used with the app\n* Low memory messages fix\n* other bug fixes"
+						},
+						"v1.1.7": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.7-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.7.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.7.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Bluetooth companion (Beta)\n* Improved heard list\n* bug fixes\n* SD card discovery/heard storage"
+						},
+						"v1.1.6": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.6-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.6.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.6.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Bluetooth companion (Beta)\n* Improved heard list\n* bug fixes\n* SD card discovery/heard storage"
+						},
+						"v1.1.3": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.3-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.3.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.3.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* UI Optimsiations\n* PSK Channel entry (channel 5)\n* Bugfixes"
+						},
+						"v1.1.2": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.2-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.2.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.2.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Timezone fixes\n* Home & Lock Screen Wallpaper settings\n* Terminal buffer increased\n* Bugfixes"
+						},
+						"v1.1.1": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.1-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.1.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.1.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Map Fixes\n* Notification optimisations\n* Other fixes"
+						},
+						"v1.1.0": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.1.0-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.1.0.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.1.0.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* DM UI updated for easier DM chat, badge message notifications.\n* DM notifications on homescreen.\n* Emoji fixes.\n* 179 extra glyphs added to the main font to support text display for 9 countries/regions.\n* International keyboard support for 9 countries/regions.\n* GPS Time Sync update.\n* Tile support for maps in zoom view.\n* Lots of bug fixes, tweaks etc."
+						},
+						"v1.0.10": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.0.10-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.0.10.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TDeck-1.0.10.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Path set for contacts fixed.\n* Added delete contacts, repeaters, rooms from the contact details panel.\n* Bulk delete repeaters, rooms, chat with /clearcontacts repeaters|rooms|chat\n* Radio Profiles updated to match most recent MeshCore App profiles.\n* Map bug that showed wierd UK outline when no GPS was set.\n* Keyboard backlight fix when AOD off and device wakes. (T-Deck + with new KB only)\n* Low entropy key fix."
+						},
+						"v1.0.8": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDeck-1.0.8-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDeck-1.0.8.bin",
+									"title": "App firmware bin"
+								}
+							],
+							"notes": "* Initial release"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "lilygo",
+			"class": "meshos",
+			"name": "LilyGo T-Lora Pager",
+			"tooltip": "<img class='device' src='/img/lilygo_pager.svg'>",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "meshos",
+					"version": {
+						"v1.1.8": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TPager-1.1.8-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TPager-1.1.8.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TPager-1.1.8.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Better compatibility with MeshCore app\n* Channels increased to 20 when used with the app\n* Low memory messages fix\n* other bug fixes"
+						},
+						"v1.1.7": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TPager-1.1.7-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TPager-1.1.7.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TPager-1.1.7.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Bug fixes\n* Update compatibility with MeshOS android app\n* Contacts fixed for official MeshCore app"
+						},
+						"v1.1.6": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TPager-1.1.6-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TPager-1.1.6.bin",
+									"title": "App firmware bin"
+								},
+								{
+									"type": "download",
+									"name": "MeshOS-TPager-1.1.6.zip",
+									"title": "SD Update zip"
+								}
+							],
+							"notes": "* Initial release"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "lilygo",
+			"class": "meshos",
+			"name": "LilyGo T-Display P4",
+			"tooltip": "<img class='device' src='/img/lilygo_tdisplay_p4.svg'>",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "meshos",
+					"title": "MeshOS (AMOLED Version)",
+					"version": {
+						"v1.0.1": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDisplay-P4-1.0.1-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDisplay-P4-1.0.1.bin",
+									"title": "App firmware bin"
+								}
+							],
+							"notes": "* Channel Delete\n* Multibyte Path setting\n* GPS Manual Position\n* PTT app"
+						},
+						"v1.0.0": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-V1.0.0-Tdisplay-p4-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-V1.0.0-Tdisplay-p4.bin",
+									"title": "App firmware bin"
+								}
+							],
+							"notes": "* Initial release"
+						}
+					}
+				},
+				{
+					"role": "meshos",
+					"title": "MeshOS (LCD Version)",
+					"version": {
+						"v1.0.1": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-TDisplay-P4-LCD-1.0.1-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-TDisplay-P4-LCD-1.0.1.bin",
+									"title": "App firmware bin"
+								}
+							],
+							"notes": "* Channel Delete\n* Multibyte Path setting\n* GPS Manual Position\n* PTT app"
+						},
+						"v1.0.0": {
+							"files": [
+								{
+									"type": "flash-wipe",
+									"name": "MeshOS-V1.0.0-Tdisplay-p4-LCD-merged.bin",
+									"title": "Combined app+partition+bootloader firmware bin"
+								},
+								{
+									"type": "flash-update",
+									"name": "MeshOS-V1.0.0-Tdisplay-p4-LCD.bin",
+									"title": "App firmware bin"
+								}
+							],
+							"notes": "* Initial release"
 						}
 					}
 				}
@@ -2026,6 +2635,210 @@
 			]
 		},
 		{
+			"maker": "gat-iot",
+			"class": "community",
+			"name": "GAT-IoT GAT562 Tracker",
+			"icon": "/img/lora.svg",
+			"tooltip": "<img class='device' src='/img/gatiot_gat562.svg'>",
+			"type": "nrf52",
+			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wiscore_rak4631_board_bootloader-0.9.2-OTAFIX2.1.uf2",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "GAT562_Mesh_Tracker_Pro_companion_radio_ble.*?\\.zip",
+							"download": "GAT562_Mesh_Tracker_Pro_companion_radio_ble.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "GAT562_Mesh_Tracker_Pro_companion_radio_usb.*?\\.zip",
+							"download": "GAT562_Mesh_Tracker_Pro_companion_radio_usb.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash": "GAT562_Mesh_Tracker_Pro_[rR]epeater.*?\\.zip",
+							"download": "GAT562_Mesh_Tracker_Pro_[rR]epeater.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash": "GAT562_Mesh_Tracker_Pro_room_server.*?\\.zip",
+							"download": "GAT562_Mesh_Tracker_Pro_room_server.*?\\.uf2"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "gat-iot",
+			"class": "community",
+			"name": "GAT-IoT GAT562 30s",
+			"icon": "/img/lora.svg",
+			"tooltip": "<img class='device' src='/img/gatiot_gat562_30s.svg'>",
+			"type": "nrf52",
+			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wiscore_rak4631_board_bootloader-0.9.2-OTAFIX2.1.uf2",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "GAT562_30S_Mesh_Kit_companion_radio_ble.*?\\.zip",
+							"download": "GAT562_30S_Mesh_Kit_companion_radio_ble.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "GAT562_30S_Mesh_Kit_companion_radio_usb.*?\\.zip",
+							"download": "GAT562_30S_Mesh_Kit_companion_radio_usb.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash": "GAT562_30S_Mesh_Kit_[rR]epeater.*?\\.zip",
+							"download": "GAT562_30S_Mesh_Kit_[rR]epeater.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash": "GAT562_Mesh_Tracker_Pro_room_server.*?\\.zip",
+							"download": "GAT562_Mesh_Tracker_Pro_room_server.*?\\.uf2"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "heltec",
+			"class": "community",
+			"name": "Heltec Vision Master E213",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"tooltip": "<img class='device' src='/img/heltec_e213.svg'>",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "Heltec_E213_companion_radio_ble.*?-merged\\.bin",
+							"flash-update": "Heltec_E213_companion_radio_ble.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "Heltec_E213_companion_radio_usb.*?-merged\\.bin",
+							"flash-update": "Heltec_E213_companion_radio_usb.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash-wipe": "Heltec_E213_[rR]epeater.*?-merged\\.bin",
+							"flash-update": "Heltec_E213_[rR]epeater.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash-wipe": "Heltec_E213_room_server.*?-merged\\.bin",
+							"flash-update": "Heltec_E213_room_server.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "heltec",
+			"class": "community",
+			"name": "Heltec Vision Master E290",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"tooltip": "<img class='device' src='/img/heltec_e290.svg'>",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "Heltec_E290_companion_radio_ble.*?-merged\\.bin",
+							"flash-update": "Heltec_E290_companion_radio_ble.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "Heltec_E290_companion_radio_usb.*?-merged\\.bin",
+							"flash-update": "Heltec_E290_companion_radio_usb.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash-wipe": "Heltec_E290_[rR]epeater.*?-merged\\.bin",
+							"flash-update": "Heltec_E290_[rR]epeater.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash-wipe": "Heltec_E290_room_server.*?-merged\\.bin",
+							"flash-update": "Heltec_E290_room_server.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				}
+			]
+		},
+		{
 			"maker": "heltec",
 			"class": "community",
 			"name": "Heltec v2",
@@ -2182,6 +2995,7 @@
 			"icon": "/img/lora.svg",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"heltec_t114_board_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"tooltip": "<img class='device' src='/img/heltec_t114.svg'>",
 			"firmware": [
 				{
@@ -2205,6 +3019,28 @@
 					}
 				},
 				{
+					"role": "repeater",
+					"notice":"otafixRecommended",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash": "Heltec_t114_[rR]epeater.*?\\.zip",
+							"download": "Heltec_t114_[rR]epeater.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"notice":"otafixRecommended",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash": "Heltec_t114_room_server.*?\\.zip",
+							"download": "Heltec_t114_room_server.*?\\.uf2"
+						}
+					}
+				},
+				{
 					"role": "companionBle",
 					"title": "Companion",
 					"subTitle": "Bluetooth [no display]",
@@ -2217,12 +3053,78 @@
 					}
 				},
 				{
+					"role": "companionUsb",
+					"title": "Companion",
+					"subTitle": "USB [no display]",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "Heltec_t114_without_display_companion_radio_ble.*?\\.zip",
+							"download": "Heltec_t114_without_display_companion_radio_ble.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"notice":"otafixRecommended",
+					"subTitle": "[no display]",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash": "Heltec_t114_without_display_[rR]epeater.*?\\.zip",
+							"download": "Heltec_t114_without_display_[rR]epeater.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"notice":"otafixRecommended",
+					"subTitle": "[no display]",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash": "Heltec_t114_without_display_room_server.*?\\.zip",
+							"download": "Heltec_t114_without_display_room_server.*?\\.uf2"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "heltec",
+			"class": "community",
+			"name": "Heltec Wireless Tracker v2",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"tooltip": "<img class='device' src='/img/heltec_wt2.svg'>",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "heltec_tracker_v2_companion_radio_ble.*?-merged\\.bin",
+							"flash-update": "heltec_tracker_v2_companion_radio_ble.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "heltec_tracker_v2_companion_radio_usb.*?-merged\\.bin",
+							"flash-update": "heltec_tracker_v2_companion_radio_usb.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
 					"role": "repeater",
 					"github": {
 						"type": "repeater",
 						"files": {
-							"flash": "Heltec_t114_[rR]epeater.*?\\.zip",
-							"download": "Heltec_t114_[rR]epeater.*?\\.uf2"
+							"flash-wipe": "heltec_tracker_v2_[rR]epeater.*?-merged\\.bin",
+							"flash-update": "heltec_tracker_v2_[rR]epeater.*?-[a-f0-9]{7}\\.bin"
 						}
 					}
 				},
@@ -2231,8 +3133,8 @@
 					"github": {
 						"type": "room-server",
 						"files": {
-							"flash": "Heltec_t114_room_server.*?\\.zip",
-							"download": "Heltec_t114_room_server.*?\\.uf2"
+							"flash-wipe": "heltec_tracker_v2_room_server.*?-merged\\.bin",
+							"flash-update": "heltec_tracker_v2_room_server.*?-[a-f0-9]{7}\\.bin"
 						}
 					}
 				}
@@ -2498,6 +3400,7 @@
 			"tooltip": "<img class='device' src='/img/ikoka_stick.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v7.zip",
+			"bootloader":"xiao_nrf52840_ble_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2523,6 +3426,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 22dBm",
 					"github": {
 						"type": "repeater",
@@ -2534,6 +3438,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 22dBm",
 					"github": {
 						"type": "room-server",
@@ -2567,6 +3472,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 30dBm",
 					"github": {
 						"type": "repeater",
@@ -2578,6 +3484,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 30dBm",
 					"github": {
 						"type": "room-server",
@@ -2611,6 +3518,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 33dBm",
 					"github": {
 						"type": "repeater",
@@ -2622,6 +3530,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 33dBm",
 					"github": {
 						"type": "room-server",
@@ -2641,6 +3550,7 @@
 			"tooltip": "<img class='device' src='/img/ikoka_nano.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v7.zip",
+			"bootloader":"xiao_nrf52840_ble_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2666,6 +3576,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 22dBm",
 					"github": {
 						"type": "repeater",
@@ -2677,6 +3588,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 22dBm",
 					"github": {
 						"type": "room-server",
@@ -2710,6 +3622,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 30dBm",
 					"github": {
 						"type": "repeater",
@@ -2721,6 +3634,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 30dBm",
 					"github": {
 						"type": "room-server",
@@ -2754,6 +3668,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixNeeded",
 					"title": "Repeater - 33dBm",
 					"github": {
 						"type": "repeater",
@@ -2765,6 +3680,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixNeeded",
 					"title": "Room Server - 33dBm",
 					"github": {
 						"type": "room-server",
@@ -2784,6 +3700,7 @@
 			"tooltip": "<img class='device' src='/img/keepteen_lt1.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wiscore_rak4631_board_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2830,11 +3747,62 @@
 		{
 			"maker": "rak",
 			"class": "community",
-			"name": "RAK Wireless WisBlock / WisMesh (RAK 4631)",
+			"name": "RAK WisBlock 3112",
+			"icon": "/img/lora.svg",
+			"tooltip": "<img class='device' src='/img/rak_3112.svg'>",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "RAK3112_companion_radio_ble.*?-merged\\.bin",
+							"flash-update": "RAK3112_companion_radio_ble.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash-wipe": "RAK3112_companion_radio_usb.*?-merged\\.bin",
+							"flash-update": "RAK3112_companion_radio_usb.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash-wipe": "RAK3112_[rR]epeater.*?-merged\\.bin",
+							"flash-update": "RAK3112_[rR]epeater.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash-wipe": "RAK3112_room_server.*?-merged\\.bin",
+							"flash-update": "RAK3112_room_server.*?-[a-f0-9]{7}\\.bin"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "rak",
+			"class": "community",
+			"name": "RAK WisBlock / WisMesh (RAK 4631)",
 			"icon": "/img/lora.svg",
 			"tooltip": "<img class='device' src='/img/rak_4631.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wiscore_rak4631_board_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2858,6 +3826,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixRecommended",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -2868,6 +3837,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixRecommended",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -2881,11 +3851,66 @@
 		{
 			"maker": "rak",
 			"class": "community",
+			"name": "RAK WisMesh 1W Booster (3401 + 13302)",
+			"icon": "/img/lora.svg",
+			"tooltip": "<img class='device' src='/img/rak_13302.svg'>",
+			"type": "nrf52",
+			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wiscore_rak4631_board_bootloader-0.9.2-OTAFIX2.1.uf2",
+			"firmware": [
+				{
+					"role": "companionBle",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "RAK_3401_companion_radio_ble.*?\\.zip",
+							"download": "RAK_3401_companion_radio_ble.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "companionUsb",
+					"github": {
+						"type": "companion",
+						"files": {
+							"flash": "RAK_3401_companion_radio_usb.*?\\.zip",
+							"download": "RAK_3401_companion_radio_usb.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "repeater",
+					"notice": "otafixRecommended",
+					"github": {
+						"type": "repeater",
+						"files": {
+							"flash": "RAK_3401_[rR]epeater.*?\\.zip",
+							"download": "RAK_3401_[rR]epeater.*?\\.uf2"
+						}
+					}
+				},
+				{
+					"role": "roomServer",
+					"notice": "otafixRecommended",
+					"github": {
+						"type": "room-server",
+						"files": {
+							"flash": "RAK_3401_room_server.*?\\.zip",
+							"download": "RAK_3401_room_server.*?\\.uf2"
+						}
+					}
+				}
+			]
+		},
+		{
+			"maker": "rak",
+			"class": "community",
 			"name": "RAK WisMesh Tag",
 			"icon": "/img/lora.svg",
 			"tooltip": "<img class='device' src='/img/rak_wismesh_tag.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"wismesh_tag_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2909,6 +3934,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixRecommended",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -2919,6 +3945,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixRecommended",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -2937,6 +3964,7 @@
 			"tooltip": "<img class='device' src='/img/sensecap_solar.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v7.zip",
+			"bootloader":"sensecap_solar_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -2960,6 +3988,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -2970,6 +3999,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -2988,6 +4018,7 @@
 			"tooltip": "<img class='device' src='/img/sensecap_t1000e.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v7.zip",
+			"bootloader":"t1000_e_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -3039,6 +4070,7 @@
 			"tooltip": "<img class='device' src='/img/wio_tracker_l1.svg'>",
 			"type": "nrf52",
 			"erase": "WioTrackerL1_QSPIFlash_Format-v1.2.zip",
+			"bootloader": "wio_tracker_l1_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -3062,6 +4094,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -3072,6 +4105,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -3088,6 +4122,7 @@
 			"name": "Seeed Studio Wio Tracker L1 EINK",
 			"icon": "/img/lora.svg",
 			"tooltip": "<img class='device' src='/img/wio_tracker_l1_eink.svg'>",
+			"bootloader": "wio_tracker_l1_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"type": "nrf52",
 			"erase": "WioTrackerL1_QSPIFlash_Format-v1.2.zip",
 			"firmware": [
@@ -3113,6 +4148,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -3123,6 +4159,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -3243,6 +4280,7 @@
 			"tooltip": "<img class='device' src='/img/xiao_nrf52.svg'>",
 			"type": "nrf52",
 			"erase": "Xiao_nrf52_QSPIFlash_Format-v1.2.zip",
+			"bootloader": "xiao_nrf52840_ble_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -3266,6 +4304,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -3276,6 +4315,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice": "otafixNeeded",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -3618,6 +4658,7 @@
 			"tooltip": "<img class='device' src='/img/faketec.svg'>",
 			"type": "nrf52",
 			"erase": "FLASH_ERASE_nrf52_softdevice_v6.zip",
+			"bootloader":"promicro_nrf52840_bootloader-0.9.2-OTAFIX2.1.uf2",
 			"firmware": [
 				{
 					"role": "companionBle",
@@ -3641,6 +4682,7 @@
 				},
 				{
 					"role": "repeater",
+					"notice":"otafixRecommended",
 					"github": {
 						"type": "repeater",
 						"files": {
@@ -3651,6 +4693,7 @@
 				},
 				{
 					"role": "roomServer",
+					"notice":"otafixRecommended",
 					"github": {
 						"type": "room-server",
 						"files": {
@@ -3664,7 +4707,7 @@
 		{
 			"maker": "raspberry",
 			"class": "community",
-			"name": "Raspberry Pi Pico RP2040 + WaveShare SX1262",
+			"name": "RPI Pico 2040 + WaveShare SX1262",
 			"icon": "/img/lora.svg",
 			"type": "noflash",
 			"tooltip":"<img class='device' src='/img/rpi_picow.svg'>",
