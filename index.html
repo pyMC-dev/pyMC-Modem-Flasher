@@ -118,10 +118,10 @@
           <li>
             <label class="checkbox">
               <input type="checkbox" v-model="selected.wipe">
-              <span>Erase device</span>
+              <span>Nuke / full flash device</span>
               <div class="tooltip right max">
-                DO NOT carry out a full erase if you are simply updating your MeshCore device,
-                otherwise it will erase your MeshCore identity for that device.
+                Erases the whole ESP32 flash, then writes the pyMC modem bootloader, partition table, and firmware.
+                Use this when converting a node to pyMC modem firmware or recovering a broken install.
               </div>
             </label>
           </li>
@@ -165,7 +165,7 @@
             <i>bolt</i>
             <span>Flash!</span>
             <div class="tooltip right max" v-if="flashing.supported">
-              Upload the firmware into your device. Existing firwmare will get overwritten.
+              Upload the firmware into your device. Existing firmware will get overwritten.
               <span v-if="selected.device.type === 'nrf52'">
                 If you did not trigger DFU mode manually, use the <b>Enter DFU mode</b> before flashing
               </span>

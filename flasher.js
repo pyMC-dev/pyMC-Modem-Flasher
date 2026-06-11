@@ -489,36 +489,56 @@ function setup() {
       return;
     }
 
-    let flashData;
-    if(flashFiles[0].file) {
-      flashData = flashFiles[0].file;
-    } else {
-      let flashFile;
-      if(device.type === 'esp32') {
-        flashFile = flashFiles.find(f => f.type === (selected.wipe ? 'flash-wipe' : 'flash-update'));
-        if(selected.wipe) selected.espFlashAddress = 0x00000;
+    const downloadFlashFile = async(file) => {
+      if(file.file) {
+        return file.file;
       }
-      else {
-        flashFile = flashFiles[0];
-      }
-      console.log({flashFiles, flashFile});
 
-      const url = getFirmwarePath(flashFile);
+      const url = getFirmwarePath(file);
       console.log('downloading: ' + url);
       const resp = await fetch(url);
       if(resp.status !== 200) {
-        alert(`Could not download the firmware file from the server, reported: HTTP ${resp.status}.\nPlease try again.`)
-        return;
+        throw new Error(`Could not download the firmware file from the server, reported: HTTP ${resp.status}.`);
       }
 
-      flashData = await resp.blob();
-    }
+      return await resp.blob();
+    };
 
     const port = selected.port = await navigator.serial.requestPort({});
 
     if(device.type === 'esp32') {
       let esploader;
       let transport;
+
+      const selectedFlashType = selected.wipe ? 'flash-wipe' : 'flash-update';
+      let selectedFlashFiles = flashFiles.filter(f => f.type === selectedFlashType);
+      if(!selected.wipe && !selectedFlashFiles.length) {
+        selectedFlashFiles = flashFiles.filter(f => f.type === 'flash');
+      }
+      if(!selectedFlashFiles.length) {
+        alert(`Cannot find configuration for ${selectedFlashType} files! please report this to Discord.`);
+        flasherCleanup();
+        return;
+      }
+
+      let fileArray;
+      try {
+        fileArray = [];
+        for(const flashFile of selectedFlashFiles) {
+          const flashData = await downloadFlashFile(flashFile);
+          fileArray.push({
+            data: await blobToBinaryString(flashData),
+            address: flashFile.address ?? selected.espFlashAddress,
+          });
+        }
+      }
+      catch(e) {
+        alert(`${e}\nPlease try again.`);
+        flasherCleanup();
+        return;
+      }
+
+      console.log({flashFiles, selectedFlashType, selectedFlashFiles, fileArray});
 
       const flashOptions = {
         terminal: log,
@@ -530,10 +550,7 @@ function setup() {
         baudrate: 115200,
         romBaudrate: 115200,
         enableTracing: false,
-        fileArray: [{
-          data: await blobToBinaryString(flashData),
-   	  address: selected.espFlashAddress
-        }],
+        fileArray,
         reportProgress: async (_, written, total) => {
           flashing.percent = (written / total) * 100;
         },
@@ -572,6 +589,16 @@ function setup() {
       }
     }
     else if(device.type === 'nrf52') {
+      let flashData;
+      try {
+        flashData = await downloadFlashFile(flashFiles[0]);
+      }
+      catch(e) {
+        alert(`${e}\nPlease try again.`);
+        flasherCleanup();
+        return;
+      }
+
       const dfu = flashing.instance = new Dfu(port);
 
       flashing.active = true;

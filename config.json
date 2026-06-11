@@ -40,12 +40,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "esp32_p4_nano/firmware.bin",
-									"title": "esp32_p4_nano/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "esp32_p4_nano/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "esp32_p4_nano/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "esp32_p4_nano/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
@@ -89,12 +108,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "heltec_v3/firmware.bin",
-									"title": "heltec_v3/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "heltec_v3/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "heltec_v3/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "heltec_v3/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
@@ -114,12 +152,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "ikoka_stick/firmware.bin",
-									"title": "ikoka_stick/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "ikoka_stick/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "ikoka_stick/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "ikoka_stick/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
@@ -139,12 +196,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "lilygo_t3s3/firmware.bin",
-									"title": "lilygo_t3s3/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "lilygo_t3s3/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "lilygo_t3s3/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "lilygo_t3s3/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
@@ -164,12 +240,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "rak3112_wismesh/firmware.bin",
-									"title": "rak3112_wismesh/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "rak3112_wismesh/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "rak3112_wismesh/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "rak3112_wismesh/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
@@ -214,12 +309,31 @@
 					"role": "pymcUsb",
 					"version": {
 						"main": {
-							"notes": "Current firmware from pyMC-dev/pymc_modem main branch.",
+							"notes": "Current firmware from pyMC-dev/pymc_modem main branch. Use Flash for firmware updates, or check Erase device to nuke the node and flash bootloader + partitions + firmware.",
 							"files": [
 								{
 									"type": "flash-update",
 									"name": "xiao_wio_sx1262/firmware.bin",
-									"title": "xiao_wio_sx1262/firmware.bin"
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "xiao_wio_sx1262/bootloader.bin",
+									"title": "Nuke/full flash: bootloader.bin @ 0x0",
+									"address": 0
+								},
+								{
+									"type": "flash-wipe",
+									"name": "xiao_wio_sx1262/partitions.bin",
+									"title": "Nuke/full flash: partitions.bin @ 0x8000",
+									"address": 32768
+								},
+								{
+									"type": "flash-wipe",
+									"name": "xiao_wio_sx1262/firmware.bin",
+									"title": "Nuke/full flash: firmware.bin @ 0x10000",
+									"address": 65536
 								}
 							]
 						}
