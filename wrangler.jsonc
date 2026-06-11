@@ -2,6 +2,7 @@
   "name": "pymc-modem-flasher",
   "compatibility_date": "2026-06-11",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "not_found_handling": "single-page-application"
   }
 }

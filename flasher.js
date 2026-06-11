@@ -4,6 +4,13 @@ import { Dfu } from "/lib/dfu.js";
 import { ESPLoader, Transport, HardReset } from "/lib/esp32.js";
 import { SerialConsole } from '/lib/console.js';
 
+// Cloudflare serves index.html for deep links. If someone opens an old/in-app
+// route directly, send them back to the flasher home page instead of trying to
+// hydrate the app from that path.
+if(location.pathname !== '/') {
+  location.replace('/');
+}
+
 const searchParams = new URLSearchParams(location.search);
 const configName = searchParams.get('config')?.replaceAll(/[^a-z_-]/g, '') ?? 'config';
 const configRes = await fetch(`/${configName}.json`);
