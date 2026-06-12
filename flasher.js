@@ -13,7 +13,7 @@ if(location.pathname !== '/') {
 
 const searchParams = new URLSearchParams(location.search);
 const configName = searchParams.get('config')?.replaceAll(/[^a-z_-]/g, '') ?? 'config';
-const configRes = await fetch(`/${configName}.json`);
+const configRes = await fetch(`/${configName}.json`, { cache: 'no-store' });
 const config = await configRes.json();
 
 const githubRes = await fetch('/releases');
@@ -628,10 +628,9 @@ function setup() {
     const classes = ['pymc', 'ripple', 'meshos', 'community'];
     const deviceGroups = {};
 
-    let index = 0;
     for(const cls of classes) {
       const devices = config.device.toSorted(
-	(a, b) => (index + a.maker + a.name).localeCompare(index + b.maker + b.name)
+        (a, b) => ((a.order ?? 1000) - (b.order ?? 1000)) || (a.maker + a.name).localeCompare(b.maker + b.name)
       ).filter(
         d => d.class === cls && (deviceFilterText.value == '' || d.name.toLowerCase().includes(deviceFilterText.value?.toLowerCase()))
       )

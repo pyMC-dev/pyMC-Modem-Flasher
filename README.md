@@ -19,7 +19,7 @@ Most firmware files are loaded directly from the `pyMC-dev/pymc_modem` firmware 
 ## Configured modem variants
 
 - ESP32-P4 Nano
-- EtherMesh 1W
+- Ethermesh-1W
 - Heltec T114
 - Heltec V3
 - Heltec V4

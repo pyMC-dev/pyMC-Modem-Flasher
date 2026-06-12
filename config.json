@@ -36,6 +36,39 @@
 	},
 	"device": [
 		{
+			"maker": "ethermesh",
+			"class": "pymc",
+			"name": "Ethermesh-1W",
+			"icon": "/img/lora.svg",
+			"type": "esp32",
+			"firmware": [
+				{
+					"role": "pymcModem",
+					"version": {
+						"custom": {
+							"notes": "Custom EtherMesh 1W pyMC Modem firmware bundled with this flasher repo. Use Flash for firmware updates, or check Erase Device to erase the device and flash the factory image.",
+							"files": [
+								{
+									"type": "flash-update",
+									"name": "/firmware/ethermesh_1w/firmware.bin",
+									"title": "Update firmware only (firmware.bin)",
+									"address": 65536
+								},
+								{
+									"type": "flash-wipe",
+									"name": "/firmware/ethermesh_1w/factory.bin",
+									"title": "Erase/full flash: factory.bin @ 0x0",
+									"address": 0
+								}
+							]
+						}
+					}
+				}
+			],
+			"tooltip": "Ethermesh-1W ESP device",
+			"order": 0
+		},
+		{
 			"maker": "generic",
 			"class": "pymc",
 			"name": "ESP32-P4 Nano",
@@ -77,38 +110,6 @@
 					}
 				}
 			]
-		},
-		{
-			"maker": "ethermesh",
-			"class": "pymc",
-			"name": "EtherMesh 1W",
-			"icon": "/img/lora.svg",
-			"type": "esp32",
-			"firmware": [
-				{
-					"role": "pymcModem",
-					"version": {
-						"custom": {
-							"notes": "Custom EtherMesh 1W pyMC Modem firmware bundled with this flasher repo. Use Flash for firmware updates, or check Erase Device to erase the device and flash the factory image.",
-							"files": [
-								{
-									"type": "flash-update",
-									"name": "/firmware/ethermesh_1w/firmware.bin",
-									"title": "Update firmware only (firmware.bin)",
-									"address": 65536
-								},
-								{
-									"type": "flash-wipe",
-									"name": "/firmware/ethermesh_1w/factory.bin",
-									"title": "Erase/full flash: factory.bin @ 0x0",
-									"address": 0
-								}
-							]
-						}
-					}
-				}
-			],
-			"tooltip": "EtherMesh 1W ESP device"
 		},
 		{
 			"maker": "bq",
