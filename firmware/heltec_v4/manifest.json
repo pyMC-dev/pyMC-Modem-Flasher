@@ -1,6 +1,6 @@
 {
   "name": "Heltec WiFi LoRa 32 V4 pyMC Modem",
-  "version": "heltec_v4-676a150a4736",
+  "version": "heltec_v4-b700d71b0719",
   "new_install_prompt_erase": true,
   "builds": [
     {
