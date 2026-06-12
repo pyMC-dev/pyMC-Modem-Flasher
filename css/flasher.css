@@ -58,11 +58,17 @@ body:has([v-cloak]):after {
 #app .tooltip:has(>.device) {
   background: #f0f0f055;
   width: auto;
+  max-width: min(70vw, 320px);
+  overflow: hidden;
 }
 #app img.device {
-  width: 400px;
-  max-width: 400px;
-  max-height: 400px;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(60vw, 300px);
+  max-height: 220px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 #app div.autoscroller {
   overflow: auto;
